@@ -1,0 +1,95 @@
+$primary-color: #2c3e50;
+$text-color: #fafafa;
+$accent-color: #e74c3c;
+$button: #199999;
+$background: #1a1a1a;
+$font-stack: "Segoe UI", Arial, sans-serif;
+
+body {
+	margin: 0;
+	padding: 2rem;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: $background !important;
+	color: $text-color;
+	font-family: $font-stack;
+	text-align: center;
+
+	h1 {
+		color: $text-color;
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
+		text-shadow: 2px 2px 4px;
+		animation: fadeIn 1s ease-in;
+	}
+
+	p {
+		color: $text-color;
+		font-size: 1.1rem;
+		line-height: 1.6;
+		margin: 0.8rem 0;
+	}
+	.special-text {
+		color: gold;
+		font-weight: bold;
+		cursor: pointer;
+		transition: transform 0.3s ease;
+
+		&:hover {
+			transform: scale(1.05);
+			-webkit-transform: scale(1.05);
+			-moz-transform: scale(1.05);
+			-ms-transform: scale(1.05);
+			-o-transform: scale(1.05);
+			text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+		}
+	}
+
+	button {
+		transition: all 0.3s ease;
+		padding: 0;
+		border: none;
+		font: inherit;
+		color: inherit;
+		background-color: transparent;
+		cursor: pointer;
+		outline: none;
+		background: $button;
+		padding: 4px 8px;
+		border-radius: 8px;
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		-ms-border-radius: 8px;
+		-o-border-radius: 8px;
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		&:hover {
+			color: $text-color;
+			transform: scale(1.05);
+			-webkit-transform: scale(1.05);
+			-moz-transform: scale(1.05);
+			-ms-transform: scale(1.05);
+			-o-transform: scale(1.05);
+		}
+
+		&:active {
+			background: #e74c3c;
+		}
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
