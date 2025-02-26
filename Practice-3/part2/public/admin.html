@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Админка</title>
+	</head>
+	<body>
+		<h1>Админка</h1>
+
+		<h2>Добавить новый товар</h2>
+		<input type="text" id="nameInput" placeholder="Название товара" />
+		<input type="number" id="priceInput" placeholder="Цена товара" />
+		<input
+			type="text"
+			id="descriptionInput"
+			placeholder="Описание товара"
+		/>
+		<button id="addButton">Добавить товар</button>
+
+		<h2>Список товаров</h2>
+		<ul id="productList"></ul>
+
+		<script>
+			document
+				.getElementById("addButton")
+				.addEventListener("click", () => {
+					const name = document.getElementById("nameInput").value;
+					const price = document.getElementById("priceInput").value;
+					const description =
+						document.getElementById("descriptionInput").value;
+
+					fetch("http://localhost:3000/products", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({
+							name,
+							price: parseFloat(price),
+							description,
+						}),
+					})
+						.then((response) => response.json())
+						.then((data) => {
+							loadProducts();
+							clearInputs();
+						})
+						.catch((error) => console.error("Ошибка:", error));
+				});
+
+			function loadProducts() {
+				fetch("http://localhost:3000/products")
+					.then((response) => response.json())
+					.then((data) => {
+						const productList =
+							document.getElementById("productList");
+						productList.innerHTML = "";
+						data.forEach((product) => {
+							const li = document.createElement("li");
+							li.textContent = `${product.name} - ${product.price} руб. (${product.description})`;
+							li.appendChild(createDeleteButton(product.id));
+							productList.appendChild(li);
+						});
+					});
+			}
+
+			function createDeleteButton(id) {
+				const button = document.createElement("button");
+				button.textContent = "Удалить";
+				button.onclick = () => {
+					fetch(`http://localhost:3000/products/${id}`, {
+						method: "DELETE",
+					})
+						.then(() => loadProducts())
+						.catch((error) => console.error("Ошибка:", error));
+				};
+				return button;
+			}
+
+			function clearInputs() {
+				document.getElementById("nameInput").value = "";
+				document.getElementById("priceInput").value = "";
+				document.getElementById("descriptionInput").value = "";
+			}
+
+			loadProducts();
+		</script>
+	</body>
+</html>

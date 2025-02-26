@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Каталог товаров</title>
+		<style>
+			.product-card {
+				border: 1px solid #ccc;
+				padding: 10px;
+				margin: 10px;
+				width: 200px;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<p><a href="admin.html">Перейти в админку</a></p>
+		<h1>Каталог товаров</h1>
+		<div id="products"></div>
+
+		<script>
+			fetch("http://localhost:3000/products")
+				.then((response) => response.json())
+				.then((data) => {
+					const productsDiv = document.getElementById("products");
+					data.forEach((product) => {
+						const card = document.createElement("div");
+						card.className = "product-card";
+						card.innerHTML = `<h2>${product.name}</h2>
+                                      <p>Цена: ${product.price}₽</p>
+                                      <p>${product.description}</p>`;
+						productsDiv.appendChild(card);
+					});
+				});
+		</script>
+	</body>
+</html>

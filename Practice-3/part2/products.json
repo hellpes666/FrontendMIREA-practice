@@ -1,0 +1,7 @@
+[
+    {"name": "Товар 1", "price": 100, "description": "Описание товара 1", "category": "Категория 1"},
+    {"name": "Товар 2", "price": 200, "description": "Описание товара 2", "category": "Категория 1"},
+    {"name": "Товар 3", "price": 150, "description": "Описание товара 3", "category": "Категория 2"},
+    {"name": "Товар 4", "price": 250, "description": "Описание товара 4", "category": "Категория 2"},
+    {"name": "Товар 5", "price": 300, "description": "Описание товара 5", "category": "Категория 1"}
+]
